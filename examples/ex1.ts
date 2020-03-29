@@ -10,12 +10,12 @@ pull(
   tee(
     pull.collect((_, _a: number[]) => {
       a = _a
-      if (b && a) assert.deepEqual(a, b)
+      if (b.length > 0 && a.length > 0) assert.deepEqual(a, b)
     })
   ),
   pull.collect((_, _b: number[]) => {
     b = _b
-    if (b && a) assert.deepEqual(a, b)
+    if (b.length > 0 && a.length > 0) assert.deepEqual(a, b)
   })
 )
 
