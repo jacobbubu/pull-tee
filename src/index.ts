@@ -16,8 +16,14 @@ export default function <T>(sinks: pull.Sink<T> | pull.Sink<T>[]) {
     let l = sinks.length + 1
 
     const _read: pull.Source<T> = (abort, cb) => {
-      // TBD: we have not process abort well
-      cbs.push(cb)
+      if (abort) {
+        l -= 1
+      } else {
+        cbs.push(cb)
+      }
+      if (l === 0) {
+        return read(true, cb)
+      }
       if (cbs.length < l) {
         return
       }
