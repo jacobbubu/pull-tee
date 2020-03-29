@@ -2,7 +2,7 @@ import * as pull from 'pull-stream'
 
 // TEE stream.
 // this could be improved to allow streams to read ahead.
-// this slows all streams to he slowest...
+// this slows all streams to the slowest...
 export default function <T>(sinks: pull.Sink<T> | pull.Sink<T>[]) {
   return function (read: pull.Source<any>) {
     let _sinks: pull.Sink<T>[]
