@@ -14,9 +14,9 @@ export default function <T>(sinks: pull.Sink<T> | pull.Sink<T>[]) {
 
     let cbs: pull.SourceCallback<T>[] = []
     let l = sinks.length + 1
-    let i = l
 
     const _read: pull.Source<T> = (abort, cb) => {
+      // TBD: we have not process abort well
       cbs.push(cb)
       if (cbs.length < l) {
         return
